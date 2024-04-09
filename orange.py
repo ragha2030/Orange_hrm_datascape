@@ -24,30 +24,16 @@ admin_ws = wb.active
 
 
 admin_ws.title = "Admin Data"
-data_list = []
+admin_ws.append(["Username", "User_role", "Employee_name", "Status"])  
+
 for i in range(1, len(admin_rows)+1):
-        data = {}        
-        data['Username'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[2]').text
-        data['User_role'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[3]').text
-        data['Employee_name'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[4]').text
-        data['Status'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[5]').text
-        data_list.append(data)
+        Username = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[2]').text
+        User_role = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[3]').text
+        Employee_name = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[4]').text
+        Status = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[5]').text
+    
 
-ws_index = admin_ws.max_row +2
-
-admin_ws['A1'] = 'username'
-admin_ws['B1'] = 'user_role'
-admin_ws['C1'] = 'Employee_name'
-admin_ws['D1'] = 'Status'
-
-for data in data_list:
-     
-    admin_ws['A'+str(ws_index)] = data ['username']
-    admin_ws['B'+str(ws_index)] = data ['user_role']
-    admin_ws['C'+str(ws_index)] = data ['Employee_name']
-    admin_ws['D'+str(ws_index)] = data ['status']
-    ws_index += 1
-
+        admin_ws.append([Username, User_role, Employee_name, Status])  
 
 
 driver.find_element(By.XPATH, '/html/body/div/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a').click()
@@ -56,17 +42,17 @@ time.sleep(5)
 pim_rows = driver.find_elements(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div')
 
 pim_ws = wb.create_sheet(title="PIM Data")
-data_list = []
+pim_ws.append(["ID", "First_name", "Last_name", "Job_title", "Employee_status", "Subunit"])  
+
+
 for i in range(1, len(pim_rows)+1):
-    data = {}
-    data['id'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[2]').text
-    data['First_name'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[3]').text
-    data['Last_name'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[4]').text
-    data['Job_title'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[5]').text
-    data['Employment_status'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[6]').text
-    data['Subunit'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[7]').text
-    data_list.append(data)
-   
+    id = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[2]').text
+    First_name = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[3]').text
+    Last_name = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[4]').text
+    Job_title = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[5]').text
+    Employment_status = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[6]').text
+    Subunit = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[3]/div/div[2]/div[' +str(i)+ ']/div/div[7]').text
+
     pim_ws.append([id, First_name, Last_name, Job_title, Employment_status, Subunit])  
 
 
@@ -74,18 +60,19 @@ driver.find_element(By.XPATH, '/html/body/div/div[1]/div[1]/aside/nav/div[2]/ul/
 time.sleep(5)
 
 leave_rows = driver.find_elements(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div')
-data_list = []
+
 Leave_ws = wb.create_sheet(title="Leave Data")
+Leave_ws.append(["Date", "Employee_name", "Leave_type", "Leave_balance", "Number_of_days", "status", "Comments"])  
+
 
 for i in range(1, len(leave_rows)+1):
-    data['Date'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div[' +str(i)+ ']/div/div[2]').text
-    data['Employee_name'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div[' +str(i)+ ']/div/div[3]').text
-    data['Leave_type'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div[' +str(i)+ ']/div/div[4]').text
-    data['Leave_balance'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div[' +str(i)+ ']/div/div[5]').text
-    data['Number_of_days'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div[' +str(i)+ ']/div/div[6]').text
-    data['status'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div[' +str(i)+ ']/div/div[7]').text
-    data['Comments'] = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div[' +str(i)+ ']/div/div[8]').text
-    data_list.append(data)
+    Date= driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div[' +str(i)+ ']/div/div[2]').text
+    Employee_name = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div[' +str(i)+ ']/div/div[3]').text
+    Leave_type = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div[' +str(i)+ ']/div/div[4]').text
+    Leave_balance = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div[' +str(i)+ ']/div/div[5]').text
+    Number_of_days = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div[' +str(i)+ ']/div/div[6]').text
+    status = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div[' +str(i)+ ']/div/div[7]').text
+    Comments = driver.find_element(By.XPATH, '/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[2]/div/div[2]/div[' +str(i)+ ']/div/div[8]').text
 
     Leave_ws.append([Date, Employee_name, Leave_type, Leave_balance, Number_of_days, status, Comments])  
 
